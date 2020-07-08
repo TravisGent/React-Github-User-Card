@@ -2,39 +2,42 @@ import React from 'react';
 import './App.css';
 import axios from "axios";
 import UserCard from "./UserCard";
-
-const usersArray = [
-  "https://api.github.com/users/tetondan",
-  "https://api.github.com/users/dustinmyers",
-  "https://api.github.com/users/justsml",
-  "https://api.github.com/users/luishrd",
-  "https://api.github.com/users/bigknell",
-  "https://api.github.com/users/travisgent"
-];
+import UserFollowers from './UserFollowers';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: []
+      users: [],
+      followers: []
     }
   }
 
   componentDidMount() {
-    for (let i = 0; i < usersArray.length; i++) {
-      axios.get(usersArray[i])
-        .then(response => {
-          this.setState({
-            users: [...this.state.users, response.data]
-          })
+    axios.get("https://api.github.com/users/travisgent")
+      .then(response => {
+        this.setState({
+          users: [...this.state.users, response.data]
         })
-    }
+      })
+
+    axios.get("https://api.github.com/users/travisgent/followers")
+    .then(response => {
+      for(let i = 0; i < response.data.length; i++) {
+        this.setState({
+          followers: [...this.state.followers, response.data[i].login]
+        })
+      }
+    })
   }
 
   render() {
     return (
       <div className="App">
-        <UserCard props={this.state.users} />
+        {console.log(this.state.users)}
+        {console.log(this.state.followers)}
+        <UserCard userCard={this.state.users} />
+        <UserFollowers userFollowers={this.state.followers} />
       </div>
     );
   }

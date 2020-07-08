@@ -1,18 +1,20 @@
 import React from 'react';
 import './App.css';
 
-function UserCard(props) {
-  return (
-    <>
-        {props.map(user => (
-          <div className="userCard">
-            <h1>{user.username}</h1>
+class UserCard extends React.Component {
+  render() {
+    return (
+      <>
+        {this.props.userCard.map(user => (
+        <div className="userCard">
+            <h1>{user.login}</h1>
             <p>{user.name}</p>
             <p>{user.location}</p>
-          </div>
+        </div>
         ))}
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default UserCard;

@@ -6,13 +6,32 @@
 }
 
 .userCard {
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(19, 18, 18);
   color: white;
+  width: 350px;
+  display: inline-block;
+  margin-top: 3%;
+  border-radius: 5px;
+}
+
+.userCardTwo {
+  background-color: rgb(19, 18, 18);
+  color: white;
+  width: 350px;
+  display: inline-block;
+  border-radius: 5px;
 }
 
 .userCard p {
   font-size: 1rem;
 }
 .userCard h1{
+  font-size: 1.5rem;
+}
+
+.userCardTwo p {
+  font-size: 1rem;
+}
+.userCardTwo h1{
   font-size: 1.5rem;
 }
